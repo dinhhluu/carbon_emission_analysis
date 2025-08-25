@@ -5,9 +5,9 @@ The goal is to provide insights into the environmental impact of industries and 
 ### Where does our data come from?
 Our dataset is compiled from publicly available data from nature.com and encompasses the product carbon footprints (PCF) for various companies. PCFs represent the greenhouse gas emissions associated with specific products, quantified in CO2 (carbon dioxide equivalent).
 ### Data Structure
+
 The dataset consists of 4 tables containing information regarding carbon emissions generated during the production of goods.
-
-
+![image](![image](https://github.com/dinhhluu/carbon_emission_analysis/blob/main/Database%20diagram.png))
 
 ### Table Previews
 Let's have a look the original table 'product_emissions':
