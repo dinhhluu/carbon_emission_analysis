@@ -160,6 +160,9 @@ limit 10;
 |Software & Services|46544.00|
 |Media|23017.00|
 
+The results above show the top 10 industry groups with the highest carbon emissions. These industries should prioritize immediate actions to reduce their carbon footprint, with a strong focus on adopting green and sustainable production practices.
+Especially, Industries like Electrical Equipment & Machinery and Automobiles & Components contribute the most to carbon emissions, making them key priorities for green innovation and emission reduction.
+
 ### We identify the countries with the highest carbon emissions by aggregating data at the country level.
 
 ```
@@ -1065,5 +1068,95 @@ ORDER BY r.year;
 |9792-1-2017|81|27|19|2017|Complete catalyst system for diesel-powered passenger car exhaust|2.0|188|N/a (product with insufficient stage-level data)|N/a (product with insufficient stage-level data)|N/a (product with insufficient stage-level data)|1|
 |9792-2-2017|81|27|19|2017|Three-way Catalyst for gasoline-powered passenger car exhaust|2.0|63|N/a (product with insufficient stage-level data)|N/a (product with insufficient stage-level data)|N/a (product with insufficient stage-level data)|1|
 
+![image](https://github.com/dinhhluu/carbon_emission_analysis/blob/main/Trend%20of%20PCF%20over%20the%20years.png)
 
+### We identify which industry groups show the largest reduction in product carbon footprints (PCFs) over time by grouping data by industry and year, then comparing the year-over-year averages.
+
+```
+SELECT 
+    r.year,                         
+    i.industry_group,              
+    ROUND(SUM(r.carbon_footprint_pcf), 2) AS sum_pcf   
+FROM handle_duplicates AS r
+JOIN industry_groups i 
+    ON r.industry_group_id = i.id  
+GROUP BY 
+    r.year, 
+    i.industry_group               
+ORDER BY 
+    i.industry_group, 
+    r.year,
+    sum_pcf;
+```
+|year|industry_group|sum_pcf|
+|----|--------------|-------|
+|2015|"Consumer Durables, Household and Personal Products"|931.00|
+|2013|"Food, Beverage & Tobacco"|4308.00|
+|2014|"Food, Beverage & Tobacco"|2023.00|
+|2015|"Food, Beverage & Tobacco"|0.00|
+|2016|"Food, Beverage & Tobacco"|99639.00|
+|2017|"Food, Beverage & Tobacco"|3162.00|
+|2015|"Forest and Paper Products - Forestry, Timber, Pulp and Paper, Rubber"|8909.00|
+|2015|"Mining - Iron, Aluminum, Other Metals"|8181.00|
+|2013|"Pharmaceuticals, Biotechnology & Life Sciences"|32271.00|
+|2014|"Pharmaceuticals, Biotechnology & Life Sciences"|40215.00|
+|2015|"Textiles, Apparel, Footwear and Luxury Goods"|228.00|
+|2013|Automobiles & Components|130189.00|
+|2014|Automobiles & Components|230015.00|
+|2015|Automobiles & Components|817227.00|
+|2016|Automobiles & Components|1404833.00|
+|2013|Capital Goods|60117.00|
+|2014|Capital Goods|93699.00|
+|2015|Capital Goods|3505.00|
+|2016|Capital Goods|6369.00|
+|2017|Capital Goods|94943.00|
+|2015|Chemicals|44939.00|
+|2013|Commercial & Professional Services|817.00|
+|2014|Commercial & Professional Services|477.00|
+|2016|Commercial & Professional Services|2890.00|
+|2017|Commercial & Professional Services|741.00|
+|2013|Consumer Durables & Apparel|2860.00|
+|2014|Consumer Durables & Apparel|3123.00|
+|2016|Consumer Durables & Apparel|1114.00|
+|2015|Containers & Packaging|2988.00|
+|2015|Electrical Equipment and Machinery|9801558.00|
+|2013|Energy|750.00|
+|2016|Energy|10024.00|
+|2015|Food & Beverage Processing|138.00|
+|2014|Food & Staples Retailing|773.00|
+|2015|Food & Staples Retailing|706.00|
+|2016|Food & Staples Retailing|2.00|
+|2015|Gas Utilities|61.00|
+|2013|Household & Personal Products|0.00|
+|2013|Materials|194464.00|
+|2014|Materials|66719.00|
+|2016|Materials|61887.00|
+|2017|Materials|107129.00|
+|2013|Media|9645.00|
+|2014|Media|9645.00|
+|2015|Media|1919.00|
+|2016|Media|1808.00|
+|2014|Retailing|11.00|
+|2015|Retailing|11.00|
+|2014|Semiconductors & Semiconductor Equipment|50.00|
+|2016|Semiconductors & Semiconductor Equipment|2.00|
+|2015|Semiconductors & Semiconductors Equipment|3.00|
+|2013|Software & Services|3.00|
+|2014|Software & Services|143.00|
+|2015|Software & Services|22851.00|
+|2016|Software & Services|22846.00|
+|2017|Software & Services|690.00|
+|2013|Technology Hardware & Equipment|60539.00|
+|2014|Technology Hardware & Equipment|101153.00|
+|2015|Technology Hardware & Equipment|93807.00|
+|2016|Technology Hardware & Equipment|1285.00|
+|2017|Technology Hardware & Equipment|21866.00|
+|2013|Telecommunication Services|52.00|
+|2014|Telecommunication Services|183.00|
+|2015|Telecommunication Services|183.00|
+|2015|Tires|2022.00|
+|2015|Tobacco|1.00|
+|2015|Trading Companies & Distributors and Commercial Services & Supplies|239.00|
+|2013|Utilities|61.00|
+|2016|Utilities|61.00|
 
