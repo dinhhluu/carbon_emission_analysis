@@ -108,6 +108,7 @@ JOIN industry_groups i
 |Mercedes-Benz S-Class (S 500)|85000.0000|
 |Mercedes-Benz SL (SL 350)|72000.0000|
 
+Wind energy equipment (e.g., large wind turbines) shows the highest carbon footprints during production, followed by the automobile sector (SUVs and luxury cars such as Land Cruiser, Mercedes-Benz). This indicates that heavy manufacturing and the automotive industry are the top contributors to carbon emissions, making them priority areas for emission reduction strategies and sustainable innovation.
 
 ### We identify the industries with the highest total carbon emissions by aggregating product footprints at the industry level
 ```
@@ -121,31 +122,6 @@ GROUP BY i.industry_group
 ORDER BY total_emissions DESC
 LIMIT 10;
 
-```
-|product_name|pcf|
-|------------|---|
-|Wind Turbine G128 5 Megawats|3718044.0000|
-|Wind Turbine G132 5 Megawats|3276187.0000|
-|Wind Turbine G114 2 Megawats|1532608.0000|
-|Wind Turbine G90 2 Megawats|1251625.0000|
-|Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit.|191687.0000|
-|Retaining wall structure with a main wall (sheet pile): 136 tonnes of steel sheet piles and 4 tonnes of tierods per 100 meter wall|167000.0000|
-|TCDE|99075.0000|
-|Mercedes-Benz GLE (GLE 500 4MATIC)|91000.0000|
-|Mercedes-Benz S-Class (S 500)|85000.0000|
-|Mercedes-Benz SL (SL 350)|72000.0000|
-
-### We identify the companies with the highest contribution to carbon emissions by aggregating product footprints at the company level.
-```
-select
-	c.company_name,
-	Round(SUM(p.carbon_footprint_pcf), 2) AS total_emissions
-from product_emissions AS p
-Join companies as c
-	on p.company_id = c.id
-group by c.company_name
-Order by total_emissions DESC 
-limit 10; 
 ```
 |industry_group|total_emissions|
 |--------------|---------------|
@@ -162,6 +138,33 @@ limit 10;
 
 The results above show the top 10 industry groups with the highest carbon emissions. These industries should prioritize immediate actions to reduce their carbon footprint, with a strong focus on adopting green and sustainable production practices.
 Especially, Industries like Electrical Equipment & Machinery and Automobiles & Components contribute the most to carbon emissions, making them key priorities for green innovation and emission reduction.
+
+### We identify the companies with the highest contribution to carbon emissions by aggregating product footprints at the company level.
+```
+select
+	c.company_name,
+	Round(SUM(p.carbon_footprint_pcf), 2) AS total_emissions
+from product_emissions AS p
+Join companies as c
+	on p.company_id = c.id
+group by c.company_name
+Order by total_emissions DESC 
+limit 10; 
+```
+|company_name|total_emissions|
+|------------|---------------|
+|"Gamesa Corporación Tecnológica, S.A."|9778464.00|
+|Daimler AG|1594300.00|
+|Volkswagen AG|655960.00|
+|"Mitsubishi Gas Chemical Company, Inc."|212016.00|
+|"Hino Motors, Ltd."|191687.00|
+|Arcelor Mittal|167007.00|
+|Weg S/A|160655.00|
+|General Motors Company|137007.00|
+|"Lexmark International, Inc."|132012.00|
+|"Daikin Industries, Ltd."|105600.00|
+
+Companies at the top of the list, such as Gamesa Corporación Tecnológica, Daimler AG, and Volkswagen AG, account for the highest carbon emissions. These leading emitters should implement immediate and effective strategies to reduce their carbon footprint and move towards greener, more sustainable operations
 
 ### We identify the countries with the highest carbon emissions by aggregating data at the country level.
 
