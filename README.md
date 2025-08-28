@@ -1,4 +1,4 @@
-# carbon_emission_analysis
+# carbon_emission_analysis 
 This project analyzes carbon emissions across industries, countries, and years to identify sectors with the highest footprints and uncover trends. Carbon emissions account for over 75% of global emissions, driving climate change and environmental challenges. 
 The goal is to provide insights into the environmental impact of industries and support sustainable development decisions.
 ## Data Overview
